@@ -26,7 +26,7 @@ const create = opts => async () => {
 const destroy = async browser => {
   debug('destroy')
   await browser.close()
-  browsers.remove(browser)
+  browsers.delete(browser)
   debug(`browsers: ${browsers.size}`)
 }
 
