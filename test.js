@@ -98,3 +98,14 @@ test('destroys browsers', async t => {
   t.not(browser, newBrowser)
   pool.close()
 })
+
+test('release browser', async t => {
+  t.plan(2)
+  const pool = await createPool({ min: 1 })
+  const browser = await pool.acquire()
+  t.not(browser, undefined)
+  pool.release(browser)
+  const newBrowser = await pool.acquire()
+  t.is(browser, newBrowser)
+  pool.close()
+})
